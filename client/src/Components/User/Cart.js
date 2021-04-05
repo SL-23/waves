@@ -79,17 +79,21 @@ class Cart extends Component {
   		</div>
   	)
 
-  	transactionError = () => {
-
+  	transactionError = (data) => {
+      console.log(data);
   	}
 
 
-  	transactionCancel = () => {
-
+  	transactionCancel = (data) => {
+      console.log(data);
   	}
 
   	transactionSuccess = () => {
+      this.setState({
+        showTotal: false,
+        showSuccess: true
 
+      })
   	}
   	
   	render() {
@@ -125,12 +129,12 @@ class Cart extends Component {
         				{
         					this.state.showTotal ? 
         						<div className='paypal_button_container'>
-        							{/*<PayPal 
-        							        								toPay={this.state.total}
-        							        								transactionError={(data) => this.transactionError(data)}
-        							        								transactionCancel={(data) => this.transactionCancel(data)}
-        							        								onSuccess={(data) => this.transactionSuccess(data)}
-        							        							/>*/}
+        							{<Paypal 
+        							   toPay={this.state.total}
+        							   transactionError={(data) => this.transactionError(data)}
+        							   transactionCancel={(data) => this.transactionCancel(data)}
+        							   onSuccess={(data) => this.transactionSuccess(data)}
+        							 />}
         						</div>
         					: null
         				}

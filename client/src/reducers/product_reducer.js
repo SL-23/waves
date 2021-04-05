@@ -11,7 +11,7 @@ import { GET_PRODUCTS_BY_ARRIVAL,
 			CLEAR_PRODUCT_DETAILS }
 		from '../actions/types'
 
-export default function (state = {}, action){
+export default function product_reducer (state = {}, action){
 	switch(action.type){
 		case GET_PRODUCTS_BY_SELL:
 			return {...state, bySell: action.payload}

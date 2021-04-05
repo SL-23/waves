@@ -91,7 +91,7 @@ export const resetFields = (formData, formName) => {
 
 	for(let key in newFormData)
 	{
-		if(key == 'images') {
+		if(key === 'images') {
 			newFormData[key].value = [];
 		}
 		else {

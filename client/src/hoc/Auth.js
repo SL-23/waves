@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { auth } from '../actions/user_action';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-export default function(ComposedClass, reload, adminRoute = null){
+export default function auth_function (ComposedClass, reload, adminRoute = null){
 	class AuthenticationCheck extends Component {
 
 		state = {
