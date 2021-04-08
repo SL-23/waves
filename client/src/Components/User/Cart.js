@@ -4,7 +4,7 @@ import ProductBlock from '../Utils/User/ProductBlock';
 import Paypal from '../Utils/Paypal';
 
 import { connect } from 'react-redux';
-import { getCartItems, removeCartItem } from '../../actions/user_action';
+import { getCartItems, removeCartItem, onSuccessBuy } from '../../actions/user_action';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faFrown from '@fortawesome/fontawesome-free-solid/faFrown';
@@ -88,11 +88,18 @@ class Cart extends Component {
       console.log(data);
   	}
 
-  	transactionSuccess = () => {
-      this.setState({
-        showTotal: false,
-        showSuccess: true
-
+  	transactionSuccess = (data) => {
+      console.log(data)
+      this.props.dispatch(onSuccessBuy({
+        cartDetail: this.props.user.cartDetail,
+        paymentData: data
+      })).then(() => {
+        if(this.props.user.SuccessBuy) {
+          this.setState({
+            showTotal: false,
+            showSuccess: true
+          })
+        }
       })
   	}
   	
@@ -152,4 +159,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect()(Cart);
+export default connect(mapStateToProps)(Cart);

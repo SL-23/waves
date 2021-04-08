@@ -12,7 +12,7 @@ require('dotenv').config();
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
-
+mongoose.set('useFindAndModify', false);
 app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -387,14 +387,14 @@ app.post('/api/users/successBuy', auth, (req, res) => {
 					products.push({id:item.id, quantity: item.quantity})
 				})
 
-				async.eachOfSeries(products, (item, callBack) => {
+				async.eachOfSeries(products, (item, callback) => {
 					Product.update(
 						{ _id: item.id },
 						{ $inc: {
-							"sold": item.quantity,
+							"sold": item.quantity
 						}},
 						{ new: false },
-						callBack
+					
 					)
 				}, (err) => {
 					if(err) return res.json({success: false, err});
