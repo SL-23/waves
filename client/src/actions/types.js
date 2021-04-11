@@ -25,3 +25,6 @@ export const ADD_ONE_WOOD = 'add_one_wood';
 
 export const GET_PRODUCT_DETAILS = 'get_product_details';
 export const CLEAR_PRODUCT_DETAILS = 'clear_product_details';
+
+export const GET_SITE_INFO = 'get_site_info';
+export const UPDATE_SITE_INFO = 'update_site_info';

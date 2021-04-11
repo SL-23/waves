@@ -29,6 +29,7 @@ const { Brand } = require('./models/brand');
 const { Wood } = require('./models/wood');
 const { Product } = require('./models/products');
 const { Payment } = require('./models/payment');
+const { Site } = require('./models/site');
 //middleware
 const { auth } = require('./middleware/auth');
 const { admin } = require('./middleware/admin');
@@ -347,7 +348,6 @@ app.get('/api/users/removeFromCart', auth, (req, res) => {
 			populate('brand').
 			populate('wood').
 			exec((err, cartDetail) => {
-				console.log(err);
 				return res.status(200).json({
 					cartDetail,
 					cart
@@ -424,8 +424,34 @@ app.post('/api/users/successBuy', auth, (req, res) => {
 
 		}
 	)
-	//
 })
+
+//site
+
+app.get('/api/site/site_info', (req, res) => {
+	Site.find({}, (err, doc) => {
+		if(err) return res.status(400).send(err);
+		res.status(200).send(doc[0].siteInfo);
+	})
+})
+
+app.post('/api/site/update_site', auth, admin, (req, res) => {
+	Site.findOneAndUpdate(
+		{ name: 'Site'},
+		{
+			"$set": { siteInfo: req.body }
+		},
+		{ new: true },
+		(err, doc) => {
+			if(err) return res.json({success: false, err});
+			return res.status(200).send({
+				success: true,
+				siteInfo: doc.siteInfo
+			})
+		}
+	)
+})
+
 
 const port = process.env.PORT || 3002;
 
