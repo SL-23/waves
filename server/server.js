@@ -265,6 +265,22 @@ app.post('/api/users/uploadimage',auth,admin,formidable(),(req,res)=>{
     })
 })
 
+app.post('/api/users/update_profile', auth, (req, res) => {
+	User.findOneAndUpdate(
+		{ _id: req.user._id},
+		{
+			"$set": req.body
+		},
+		{ new: true },
+		(err, doc) => {
+			if(err) return res.json({success: false, err});
+			return res.status(200).send({
+				success: true
+			})
+		}
+
+	)
+})
 
 app.get('/api/users/removeimage', auth, admin, (req, res) => {
 	let img_id = req.query.public_id;
@@ -394,7 +410,6 @@ app.post('/api/users/successBuy', auth, (req, res) => {
 							"sold": item.quantity
 						}},
 						{ new: false },
-					
 					)
 				}, (err) => {
 					if(err) return res.json({success: false, err});

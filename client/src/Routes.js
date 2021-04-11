@@ -20,7 +20,7 @@ const Routes = () => {
 	    <Switch>
 	    	<Route path="/user/dashboard" exact component= { Auth(UserDashboard, true) }/>
 	    	<Route path="/user/cart" exact component= { Auth(Cart, true) }/>
-	    	<Route path="/user/update_profile" exact component= { Auth(UpdateProfile, true) }/>
+	    	<Route path="/user/user_profile" exact component= { Auth(UpdateProfile, true) }/>
 
 	    	<Route path="/admin/add_product" exact component= { Auth(AddProduct, true) }/>
 	    	<Route path="/admin/manage_categories" exact component= { Auth(ManageCategories, true) }/>

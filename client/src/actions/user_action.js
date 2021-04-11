@@ -8,7 +8,9 @@ import { LOGIN_USER,
 		ADD_TO_CART_USER,
 		GET_CART_ITEM_USER,
 		REMOVE_CART_ITEM_USER,
-		ON_SUCCESS_BUY_USER } from './types'
+		ON_SUCCESS_BUY_USER,
+		UPDATE_INFO_USER,
+		CLEAR_UPDATE_USER_INFO } from './types'
 
 export function loginUser(dataToSubmit)
 {
@@ -112,4 +114,20 @@ export function onSuccessBuy (data) {
 		payload: request
 	}
 
+}
+
+export function updateInfo(dataToSubmit) {
+	const request = axios.post(`${USER_SERVER}/update_profile`, dataToSubmit)
+		.then(response => response.data)
+	return {
+		type: UPDATE_INFO_USER,
+		payload: request
+	}
+}
+
+export function clearUpdateUser() {
+	return {
+		type: CLEAR_UPDATE_USER_INFO,
+		payload: ''
+	}
 }

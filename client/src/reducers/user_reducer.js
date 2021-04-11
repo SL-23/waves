@@ -5,7 +5,9 @@ import { LOGIN_USER,
 		 ADD_TO_CART_USER, 
 		 GET_CART_ITEM_USER, 
 		 REMOVE_CART_ITEM_USER,
-		 ON_SUCCESS_BUY_USER } from '../actions/types'
+		 ON_SUCCESS_BUY_USER,
+		 UPDATE_INFO_USER,
+		 CLEAR_UPDATE_USER_INFO } from '../actions/types'
 
 export default function user_reducer (state = {}, action){
 	switch(action.type){
@@ -44,6 +46,10 @@ export default function user_reducer (state = {}, action){
 				cartDetail: action.payload.cartDetail
 
 			}
+		case UPDATE_INFO_USER:
+			return {...state, updateUser: action.payload}
+		case CLEAR_UPDATE_USER_INFO:
+			return {...state, updateUser: action.payload}
 		default:
 			return state;
 	}

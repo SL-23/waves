@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FormField from '../Utils/Form/FormField';
 import { update, generateData, isFormValid, populateFields } from '../Utils/Form/FormAction';
-
+import { updateInfo, clearUpdateUser } from '../../actions/user_action';
 import { connect } from 'react-redux';
 
 class UpdatePersonalInfo extends Component {
@@ -69,7 +69,20 @@ class UpdatePersonalInfo extends Component {
 		let formIsValid = isFormValid(this.state.formData, 'update_user');
 		if(formIsValid)
 		{
-			console.log(dataToSubmit);
+			this.props.dispatch(updateInfo(dataToSubmit)).then(() => {
+				if(this.props.user.updateUser.success) {
+					this.setState({
+						formSuccess: true
+					}, () => {
+						setTimeout(() => {
+							this.props.dispatch(clearUpdateUser());
+							this.setState({
+								formSuccess: false
+							})
+						}, 2000)
+					})
+				}
+			})
 		
 		}
 		else {
