@@ -12,6 +12,7 @@ import ManageCategories from './Components/User/Admin/ManageCategories';
 import Auth from './hoc/Auth';
 import Shop from './Components/Shop';
 import Cart from './Components/User/Cart'
+import UpdateProfile from './Components/User/UpdateProfile';
 
 const Routes = () => {
   return (
@@ -19,6 +20,8 @@ const Routes = () => {
 	    <Switch>
 	    	<Route path="/user/dashboard" exact component= { Auth(UserDashboard, true) }/>
 	    	<Route path="/user/cart" exact component= { Auth(Cart, true) }/>
+	    	<Route path="/user/update_profile" exact component= { Auth(UpdateProfile, true) }/>
+
 	    	<Route path="/admin/add_product" exact component= { Auth(AddProduct, true) }/>
 	    	<Route path="/admin/manage_categories" exact component= { Auth(ManageCategories, true) }/>
 
