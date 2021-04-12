@@ -10,12 +10,8 @@ class Home extends Component {
 
   componentDidMount()
   {
-    console.log(this.props.products);
   	this.props.dispatch(getProductsBySell());
-  	this.props.dispatch(getProductsByArrival());
-    console.log('here');
-    console.log(this.props.products);
-  	
+  	this.props.dispatch(getProductsByArrival());  	
   }
 
 
